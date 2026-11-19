@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/TheFavicon.png">
+    <title>Unfriþ</title>
+  </head>
+  <body>
+    <div id="stage">
+      <div id="frame">
+        <canvas id="game" width="1280" height="640" aria-label="Unfriþ"></canvas>
+        <footer id="taskbar">
+          <div class="taskbar__left">
+            <span class="taskbar__label">Status</span>
+            <span id="taskbar-status" class="taskbar__data">AWAITING ORDERS</span>
+          </div>
+          <div class="taskbar__centre">
+            <span id="taskbar-ticker" class="taskbar__ticker">Obedience · Work · Worship</span>
+          </div>
+          <div class="taskbar__right">
+            <span class="taskbar__data">v0.1.0</span>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

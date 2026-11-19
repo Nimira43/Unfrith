@@ -1,0 +1,20 @@
+{
+  "name": "unfrith",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Unfriþ — an overhead 2D stealth game set in an alternative, totalitarian Britain.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/special-elite": "^5.3.0",
+    "@fontsource/stardos-stencil": "^5.3.0"
+  },
+  "devDependencies": {
+    "vite": "^8.3.8"
+  }
+}

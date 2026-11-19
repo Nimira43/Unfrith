@@ -1,0 +1,92 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--soot);
+  color: var(--paper);
+  font-family: var(--font-main);
+  overflow: hidden;
+}
+
+/* The stage fills the window; the fixed 1280 × 720 frame is scaled to fit inside it. */
+#stage {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+#frame {
+  position: relative;
+  width: var(--frame-w);
+  height: var(--frame-h);
+  transform: scale(var(--scale, 1));
+  transform-origin: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 0 1px var(--concrete-900);
+}
+
+#game {
+  display: block;
+  width: var(--frame-w);
+  height: calc(var(--frame-h) - var(--taskbar-h));
+  image-rendering: pixelated;
+  background: var(--soot);
+}
+
+/* ---------- Taskbar ---------- */
+#taskbar {
+  height: var(--taskbar-h);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  padding: 0 24px;
+  background: var(--concrete-900);
+  border-top: 2px solid var(--regime-red-dark);
+}
+
+.taskbar__left,
+.taskbar__right {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.taskbar__right {
+  justify-content: flex-end;
+}
+
+.taskbar__centre {
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.taskbar__label {
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--paper-dim);
+}
+
+.taskbar__data {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--paper);
+}
+
+.taskbar__ticker {
+  font-family: var(--font-title);
+  font-size: 20px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--regime-red);
+}
