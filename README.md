@@ -1,4 +1,5 @@
 # Unfriþ
+
 ## by Nick Rabone
 
 *Unfriþ* (Old English: **discord, the breaking of the peace**) is an overhead 2D stealth game set in an alternative, totalitarian Britain.
@@ -62,6 +63,18 @@ Bleak, but never pure black and white. Every colour is a CSS variable in `src/st
 | Tunnels | Damp brick, dark water |
 | Docks and sea | Deep sea blues, fog, rust, searchlights |
 
+## Controls
+
+| Key | Action |
+| --- | --- |
+| W A S D / arrow keys | Move |
+| Shift | Sneak: slower, but silent |
+| E | Take documents or stones |
+| Mouse click | Throw a stone where you aim |
+| Esc / P | Pause |
+
+Keep still (or sneak) in a doorway to hide. Footsteps carry; stones carry further.
+
 ## Getting started
 
 ```bash
@@ -79,12 +92,13 @@ unfrith/
   src/
     main.js           # boot: fonts, display, loop, first scene
     core/             # display scaling, palette, loop, scene manager
-    world/            # tile maps, collision, lighting (planned)
-    entities/         # player, guards, vehicles, boats, pickups (planned)
-    ai/               # guard behaviour, vision, hearing (planned)
-    systems/          # game-wide systems (planned)
+    world/            # tiles, tile map, A* pathfinding, city generator, map renderer
+    entities/         # player, guards, stones
+    ai/               # vision cones
+    systems/          # noise events, game state
+    data/             # evidence catalogue
     scenes/           # title screen, levels, endings
-    ui/               # taskbar and modals (planned)
+    ui/               # taskbar and modals
     styles/           # theme.css (fonts + palette), main.css (layout)
   public/
     levels/           # level data
@@ -93,4 +107,4 @@ unfrith/
 
 ## Status
 
-**v0.1.0: scaffold.** Title screen only. Development of the core systems and the first level is next.
+**v0.2.1: Level 1 prototype.** The shared core (input, camera, fixed-step loop, scenes, audio), guard AI with vision cones, hearing and stone distraction, the taskbar and modals, and the first level: a procedurally generated city (with L-shaped buildings, hiding doorways and rooftop propaganda posters) whose walls shift whenever the curfew bell rings. Every generated city is checked to be escapable in every phase.

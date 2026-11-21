@@ -1,7 +1,7 @@
 {
   "name": "unfrith",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Unfriþ — an overhead 2D stealth game set in an alternative, totalitarian Britain.",
   "type": "module",
   "scripts": {

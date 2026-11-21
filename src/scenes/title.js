@@ -1,5 +1,3 @@
-// Title screen: the game's name under a sweeping searchlight, with rain.
-
 import { palette, fonts } from '../core/palette.js'
 import { FRAME_W } from '../core/display.js'
 
@@ -7,12 +5,12 @@ const W = FRAME_W
 const H = 640
 const RAIN_DROPS = 220
 
-export function createTitleScene({ setStatus }) {
+export function createTitleScene({ taskbar, onStart }) {
   let time = 0
   let rain = []
 
   const onKey = (e) => {
-    if (e.key === 'Enter') setStatus('NO LEVELS YET — PROTOTYPE PENDING')
+    if (e.key === 'Enter') onStart()
   }
 
   return {
@@ -24,7 +22,8 @@ export function createTitleScene({ setStatus }) {
         speed: 520 + Math.random() * 380,
       }))
       window.addEventListener('keydown', onKey)
-      setStatus('AWAITING ORDERS')
+      taskbar.mode('title')
+      taskbar.status('AWAITING ORDERS')
     },
 
     exit() {
@@ -35,7 +34,7 @@ export function createTitleScene({ setStatus }) {
       time += dt
       for (const d of rain) {
         d.y += d.speed * dt
-        d.x -= d.speed * 0.18 * dt // slight wind
+        d.x -= d.speed * 0.18 * dt 
         if (d.y > H) {
           d.y = -d.len
           d.x = Math.random() * (W + 120)
@@ -44,14 +43,12 @@ export function createTitleScene({ setStatus }) {
     },
 
     render(ctx) {
-      // Background: soot fading to concrete
       const bg = ctx.createLinearGradient(0, 0, 0, H)
       bg.addColorStop(0, palette.get('soot'))
       bg.addColorStop(1, palette.get('concrete-900'))
       ctx.fillStyle = bg
       ctx.fillRect(0, 0, W, H)
 
-      // The creed, painted large and faded into the wall
       ctx.save()
       ctx.globalAlpha = 0.18
       ctx.fillStyle = palette.get('regime-red-dark')
@@ -61,7 +58,6 @@ export function createTitleScene({ setStatus }) {
       ctx.fillText('OBEY · WORK · WORSHIP', W / 2, 96)
       ctx.restore()
 
-      // Searchlight: a soft cone sweeping left and right from below
       const angle = Math.sin(time * 0.45) * 0.75 - Math.PI / 2
       const ox = W / 2
       const oy = H + 40
@@ -74,19 +70,12 @@ export function createTitleScene({ setStatus }) {
       ctx.fillStyle = beam
       ctx.beginPath()
       ctx.moveTo(ox, oy)
-      ctx.lineTo(
-        ox + Math.cos(angle - spread) * reach,
-        oy + Math.sin(angle - spread) * reach,
-      )
-      ctx.lineTo(
-        ox + Math.cos(angle + spread) * reach,
-        oy + Math.sin(angle + spread) * reach,
-      )
+      ctx.lineTo(ox + Math.cos(angle - spread) * reach, oy + Math.sin(angle - spread) * reach)
+      ctx.lineTo(ox + Math.cos(angle + spread) * reach, oy + Math.sin(angle + spread) * reach)
       ctx.closePath()
       ctx.fill()
       ctx.restore()
 
-      // Rain
       ctx.save()
       ctx.strokeStyle = withAlpha(palette.get('concrete-300'), 0.35)
       ctx.lineWidth = 1
@@ -98,7 +87,6 @@ export function createTitleScene({ setStatus }) {
       ctx.stroke()
       ctx.restore()
 
-      // Title
       ctx.save()
       ctx.textAlign = 'center'
       ctx.textBaseline = 'alphabetic'
@@ -108,13 +96,11 @@ export function createTitleScene({ setStatus }) {
       ctx.font = `700 196px ${fonts.title}`
       ctx.fillText('Unfriþ', W / 2, 370)
 
-      // Meaning
       ctx.shadowBlur = 0
       ctx.fillStyle = palette.get('paper-dim')
       ctx.font = `italic 500 30px ${fonts.main}`
       ctx.fillText('discord · the breaking of the peace', W / 2, 470)
 
-      // Prompt, flickering like a failing bulb
       const flicker = Math.sin(time * 3) > -0.6 && Math.random() > 0.03
       if (flicker) {
         ctx.fillStyle = palette.get('resistance-amber')
@@ -126,7 +112,6 @@ export function createTitleScene({ setStatus }) {
   }
 }
 
-// '#rrggbb' + alpha → 'rgba(...)'
 function withAlpha(hex, a) {
   const n = parseInt(hex.slice(1), 16)
   return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`

@@ -1,5 +1,3 @@
-// Minimal scene manager. Each scene may implement enter(), exit(), update(dt), render(ctx).
-
 let current = null
 
 export const scenes = {

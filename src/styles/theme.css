@@ -1,34 +1,31 @@
 :root {
-  /* ---------- Fonts ---------- */
-  --font-main:
-    "Cormorant Garamond", Georgia, serif; /* body text, dialogue, menus */
-  --font-title:
-    "Stardos Stencil", "Cormorant Garamond", serif; /* titles, level names */
-  --font-mono:
-    "Special Elite", "Courier New", monospace; /* dossiers, logs, taskbar data */
+  --font-main: 'Cormorant Garamond', Georgia, serif;   
+  --font-title: 'Stardos Stencil', 'Cormorant Garamond', serif; 
+  --font-mono: 'Special Elite', 'Courier New', monospace; 
 
-  /* ---------- Core neutrals (concrete and soot) ---------- */
-  --soot: #1c1d1b; /* deepest background — never #000 */
+  --soot: #1c1d1b;          
   --concrete-900: #2a2b28;
   --concrete-700: #4a4b46;
   --concrete-500: #74756e;
   --concrete-300: #a8a69c;
-  --paper: #d8d2c4; /* main text — never #fff */
-  --paper-dim: #a39d90; /* secondary text */
+  --paper: #d8d2c4;         
+  --paper-dim: #a39d90;     
 
-  /* ---------- The regime and the resistance ---------- */
-  --regime-red: #9e2b25; /* CAP, flags, slogans — the loudest colour */
+  --regime-red: #9e2b25;    
   --regime-red-dark: #5e1a17;
-  --resistance-amber: #d9a441; /* warm light: allies, safe places, hope */
-  --sodium: #c9822e; /* street lamps */
+  --resistance-amber: #d9a441; 
+  --sodium: #c9822e;       
 
-  /* ---------- The City ---------- */
-  --city-slate: #2e3236; /* wet streets */
+  --city-slate: #2e3236;    
   --city-brick: #5b3a32;
   --city-puddle: #3b4a52;
   --city-roof: #3f403b;
+  --city-roof-2: #46433c;
+  --city-roof-3: #393d3b;
+  --city-pavement: #3a3c3b;
+  --city-kerb: #4d4f4b;
+  --city-glass: #2a3539;
 
-  /* ---------- The Country Roads / Forest ---------- */
   --forest-950: #0f1a14;
   --forest-800: #1d2e22;
   --forest-600: #2f4a35;
@@ -36,7 +33,6 @@
   --country-tarmac: #33352f;
   --lightning: #e8ecf2;
 
-  /* ---------- The Headquarters (sterile mint, grimy greys) ---------- */
   --hq-mint: #a8cbb7;
   --hq-mint-dark: #7fa894;
   --hq-tile: #c9cfc4;
@@ -44,19 +40,16 @@
   --hq-grime-dark: #474943;
   --hq-fluorescent: #e6f0e8;
 
-  /* ---------- The Tunnels ---------- */
   --tunnel-brick: #3d3029;
   --tunnel-damp: #2b2e2a;
   --tunnel-water: #26332f;
 
-  /* ---------- The Docks and the Sea ---------- */
   --sea-deep: #142028;
   --sea: #22343e;
   --sea-fog: #8e979a;
   --dock-rust: #7a4a30;
   --searchlight: #f1ecd6;
 
-  /* ---------- Layout ---------- */
   --frame-w: 1280px;
   --frame-h: 720px;
   --taskbar-h: 80px;
