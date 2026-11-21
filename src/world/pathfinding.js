@@ -63,7 +63,7 @@ class Heap {
     this.pri = []
   }
   get size() {
-    return this.items.length
+    return this.items.length;
   }
   push(item, p) {
     const a = this.items
@@ -72,11 +72,11 @@ class Heap {
     q.push(p)
     let i = a.length - 1
     while (i > 0) {
-      const parent = (i - 1) >> 1
-      if (q[parent] <= q[i]) break
-      [a[i], a[parent]] = [a[parent], a[i]]
-      [q[i], q[parent]] = [q[parent], q[i]]
-      i = parent
+      const parent = (i - 1) >> 1;
+      if (q[parent] <= q[i]) break;
+      [a[i], a[parent]] = [a[parent], a[i]];
+      [q[i], q[parent]] = [q[parent], q[i]];
+      i = parent;
     }
   }
   pop() {
@@ -90,15 +90,15 @@ class Heap {
       q[0] = lastPri
       let i = 0
       for (;;) {
-        const l = i * 2 + 1
-        const r = l + 1
-        let m = i
-        if (l < a.length && q[l] < q[m]) m = l
-        if (r < a.length && q[r] < q[m]) m = r
-        if (m === i) break
-        [a[i], a[m]] = [a[m], a[i]]
-        [q[i], q[m]] = [q[m], q[i]]
-        i = m
+        const l = i * 2 + 1;
+        const r = l + 1;
+        let m = i;
+        if (l < a.length && q[l] < q[m]) m = l;
+        if (r < a.length && q[r] < q[m]) m = r;
+        if (m === i) break;
+        [a[i], a[m]] = [a[m], a[i]];
+        [q[i], q[m]] = [q[m], q[i]];
+        i = m;
       }
     }
     return top

@@ -55,10 +55,11 @@ const POSTERS = [
 
 export function generateCity(seed) {
   const rng = createRandom(seed)
+
   const colWidths = bandWidths(rng, W - 4, COL_BLOCKS, 9, 13)
   const rowWidths = bandWidths(rng, H - 4, ROW_BLOCKS, 8, 12)
   const sx = []
-  const bx = []
+  const bx = [] 
   const sy = []
   const by = []
   let p = 2
@@ -83,7 +84,7 @@ export function generateCity(seed) {
   const nodeId = (i, j) => j * NX + i
   const nodeOf = (id) => ({ i: id % NX, j: Math.floor(id / NX) })
 
-  const edges = []
+  const edges = [] 
   for (let j = 0; j < NY; j++) {
     for (let i = 0; i < NX; i++) {
       if (i < NX - 1)
@@ -142,7 +143,7 @@ export function generateCity(seed) {
     for (const k of rng.shuffle([...wallKs]).slice(0, reopenCount))
       makeGate(edges[k])
 
-    const strict = attempt < 2800
+    const strict = attempt < 2800 
     const okPhases = [0, 1, 2].every((ph) => reachable(ph))
     const okClosed = !strict || !reachable(-1)
     accepted = okPhases && okClosed
@@ -208,6 +209,7 @@ export function generateCity(seed) {
           map.set(x, y, ring ? T.PAVEMENT : T.BUILDING)
         }
       }
+      
       const ix = x0 + 1
       const iy = y0 + 1
       const iw = w - 2
@@ -219,7 +221,7 @@ export function generateCity(seed) {
       if (maxCw >= 3 && maxCh >= 3 && rng.chance(0.45)) {
         const cw = rng.int(3, maxCw)
         const ch = rng.int(3, maxCh)
-        const corner = rng.int(0, 3)
+        const corner = rng.int(0, 3) 
         const cx = corner % 2 === 0 ? ix : ix + iw - cw
         const cy = corner < 2 ? iy : iy + ih - ch
         for (let y = cy; y < cy + ch; y++) {
@@ -261,6 +263,7 @@ export function generateCity(seed) {
     for (let y = y0 + 1; y < y0 + h - 1; y++) {
       for (let x = x0 + 1; x < x0 + w - 1; x++) {
         if (!isB(x, y)) continue
+
         if (isP(x, y - 1) && isB(x, y + 1) && isB(x - 1, y) && isB(x + 1, y))
           spots.push([x, y])
         else if (
@@ -309,6 +312,7 @@ export function generateCity(seed) {
   for (const e of edges) {
     if (e.type === 'open') continue
     const tilesOf = barrierTiles(e)
+    
     for (const [x, y] of tilesOf) {
       for (let oy = -1; oy <= 1; oy++) {
         for (let ox = -1; ox <= 1; ox++) {
@@ -472,6 +476,7 @@ function other(e, n) {
   return e.a === n ? e.b : e.a
 }
 
+
 function bandWidths(rng, total, count, min, max) {
   const target = total - STREET * (count + 1)
   const widths = Array.from({ length: count }, () => rng.int(min, max))
@@ -500,7 +505,7 @@ export function generateValidCity(seed) {
 
 function checkTiles(level) {
   const m = level.map
-  const sx = level.start.tx
+  const sx = level.start.t
   const sy = level.start.ty
   const ex = level.exitTiles.tx
   const ey = level.exitTiles.ty + 1
