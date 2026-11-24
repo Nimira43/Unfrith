@@ -1,7 +1,5 @@
 # Unfriþ
 
-## by Nick Rabone
-
 *Unfriþ* (Old English: **discord, the breaking of the peace**) is an overhead 2D stealth game set in an alternative, totalitarian Britain.
 
 > Obedience · Work · Worship
@@ -69,11 +67,11 @@ Bleak, but never pure black and white. Every colour is a CSS variable in `src/st
 | --- | --- |
 | W A S D / arrow keys | Move |
 | Shift | Sneak: slower, but silent |
-| E | Take documents or stones |
+| E | Take documents or stones; talk; use the evidence board |
 | Mouse click | Throw a stone where you aim |
 | Esc / P | Pause |
 
-Keep still (or sneak) in a doorway to hide. Footsteps carry; stones carry further.
+Keep still (or sneak) in a doorway or alcove to hide. Footsteps carry; stones carry further.
 
 ## Getting started
 
@@ -92,13 +90,13 @@ unfrith/
   src/
     main.js           # boot: fonts, display, loop, first scene
     core/             # display scaling, palette, loop, scene manager
-    world/            # tiles, tile map, A* pathfinding, city generator, map renderer
-    entities/         # player, guards, stones
+    world/            # tiles, tile map, A* pathfinding, city and tunnel generators, renderers, lighting
+    entities/         # player, guards, stones, resistance members
     ai/               # vision cones
-    systems/          # noise events, game state
-    data/             # evidence catalogue
+    systems/          # noise events, game state, the Fracture
+    data/             # evidence catalogue, the resistance
     scenes/           # title screen, levels, endings
-    ui/               # taskbar and modals
+    ui/               # taskbar, modals, the evidence board
     styles/           # theme.css (fonts + palette), main.css (layout)
   public/
     levels/           # level data
@@ -107,4 +105,11 @@ unfrith/
 
 ## Status
 
-**v0.2.1: Level 1 prototype.** The shared core (input, camera, fixed-step loop, scenes, audio), guard AI with vision cones, hearing and stone distraction, the taskbar and modals, and the first level: a procedurally generated city (with L-shaped buildings, hiding doorways and rooftop propaganda posters) whose walls shift whenever the curfew bell rings. Every generated city is checked to be escapable in every phase.
+**v0.3.0: Level 1 and Safe Passage I.**
+
+- **Level 1, The City Maze:** a procedurally generated city (L-shaped buildings, hiding doorways, rooftop propaganda posters) whose walls shift whenever the curfew bell rings. Every generated city is checked to be escapable in every phase.
+- **Safe Passage I, Under the City:** dark tunnels with a torch-carrying patrol and alcoves to hide in, leading to the resistance base, where the people who will help you are waiting. Some of them, at least.
+- **The evidence board:** read what you carried out, string together documents that tell the same story, and decide which power sees each one.
+- **Core:** input, camera, fixed-step loop, scenes, synthesised audio, guard AI with vision cones, hearing and stone distraction, a lighting layer, taskbar and modals.
+
+Next: Level 2, the Country Roads.

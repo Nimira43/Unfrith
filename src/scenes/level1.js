@@ -194,7 +194,7 @@ export function createLevel1({
       onAlert(alerted) {
         sfx.alert()
         say('Disturbance reported. All officers respond.', 3, true)
-        // nearby officers come to help
+
         for (const g of guards) {
           if (g === alerted || g.state === 'alert') continue
           if (
@@ -211,11 +211,12 @@ export function createLevel1({
 
   return {
     enter() {
-      gameState.reset()
       taskbar.mode('game')
       taskbar.on('evidence', showEvidence)
       taskbar.on('objectives', showObjectives)
       taskbar.on('pause', showPause)
+      taskbar.enable('fracture', false)
+      taskbar.showBell(true)
       cam.follow(player, map.pxW, map.pxH, 0, true)
     },
 
@@ -527,7 +528,11 @@ export function createLevel1({
     ctx.fillText(`EVIDENCE CARRIED: ${countFound()} OF 3`, VIEW_W / 2, 360)
     ctx.fillStyle = palette.get('paper-dim')
     ctx.font = `italic 500 24px ${fonts.main}`
-    ctx.fillText('Safe Passage I is not built yet.', VIEW_W / 2, 400)
+    ctx.fillText(
+      'Next: Safe Passage I. The tunnels, and the people waiting there.',
+      VIEW_W / 2,
+      400,
+    )
     ctx.globalAlpha = 1
     if (modeTime > 1) blinkPrompt(ctx, 'PRESS ENTER', 480)
   }

@@ -29,11 +29,7 @@ export function createMapRenderer(level) {
     paper: palette.get('paper'),
     sodium: palette.get('sodium'),
     glass: palette.get('city-glass'),
-    roofs: [
-      palette.get('city-roof'),
-      palette.get('city-roof-2'),
-      palette.get('city-roof-3'),
-    ],
+    roofs: [palette.get('city-roof'), palette.get('city-roof-2'), palette.get('city-roof-3')],
   }
 
   for (let ty = 0; ty < map.h; ty++) {
@@ -52,15 +48,7 @@ export function createMapRenderer(level) {
             g.fillStyle = C.puddle
             g.globalAlpha = 0.7
             g.beginPath()
-            g.ellipse(
-              x + 8,
-              y + 8,
-              4 + rng.int(0, 6),
-              3 + rng.int(0, 3),
-              0,
-              0,
-              Math.PI * 2,
-            )
+            g.ellipse(x + 8, y + 8, 4 + rng.int(0, 6), 3 + rng.int(0, 3), 0, 0, Math.PI * 2)
             g.fill()
             g.globalAlpha = 1
           }
@@ -86,7 +74,7 @@ export function createMapRenderer(level) {
           break
         case T.DOORWAY:
           g.fillStyle = C.pave
-          g.fillRect(x, y, TILE, TILE)
+          g.fillRect(x, y, TILE, TILE) 
           break
         default:
           break
@@ -98,8 +86,7 @@ export function createMapRenderer(level) {
 
   for (const r of level.roofs) {
     g.fillStyle = C.roofs[r.shade]
-    for (const rc of r.rects)
-      g.fillRect(rc.x * TILE, rc.y * TILE, rc.w * TILE, rc.h * TILE)
+    for (const rc of r.rects) g.fillRect(rc.x * TILE, rc.y * TILE, rc.w * TILE, rc.h * TILE)
 
     const b = r.bounds
     for (let ty = b.y; ty < b.y + b.h; ty++) {
@@ -126,14 +113,7 @@ export function createMapRenderer(level) {
       for (let k = 0; k < items; k++) {
         const ix = x + 8 + rng.int(0, Math.max(0, w - 32))
         const iy = y + 8 + rng.int(0, Math.max(0, h - 32))
-        if (
-          posterBox &&
-          ix + 20 > posterBox.x &&
-          ix < posterBox.x + posterBox.w &&
-          iy + 14 > posterBox.y &&
-          iy < posterBox.y + posterBox.h
-        )
-          continue
+        if (posterBox && ix + 20 > posterBox.x && ix < posterBox.x + posterBox.w && iy + 14 > posterBox.y && iy < posterBox.y + posterBox.h) continue
         drawClutter(ix, iy, rng.int(0, 2))
       }
     }
@@ -172,13 +152,9 @@ export function createMapRenderer(level) {
       const x = tx * TILE
       const y = ty * TILE
       const open =
-        map.get(tx, ty - 1) === T.PAVEMENT
-          ? 'n'
-          : map.get(tx, ty + 1) === T.PAVEMENT
-            ? 's'
-            : map.get(tx - 1, ty) === T.PAVEMENT
-              ? 'w'
-              : 'e'
+        map.get(tx, ty - 1) === T.PAVEMENT ? 'n'
+          : map.get(tx, ty + 1) === T.PAVEMENT ? 's'
+            : map.get(tx - 1, ty) === T.PAVEMENT ? 'w' : 'e'
       g.fillStyle = C.soot
       g.fillRect(x, y, TILE, TILE)
       g.fillStyle = C.c500
@@ -186,7 +162,6 @@ export function createMapRenderer(level) {
       if (open !== 's') g.fillRect(x, y + TILE - 2, TILE, 2)
       if (open !== 'w') g.fillRect(x, y, 2, TILE)
       if (open !== 'e') g.fillRect(x + TILE - 2, y, 2, TILE)
-
       g.fillStyle = C.c300
       g.globalAlpha = 0.5
       if (open === 'n') g.fillRect(x + 3, y, TILE - 6, 2)
@@ -237,12 +212,7 @@ export function createMapRenderer(level) {
     const h = rc.h * TILE - 36
     const ph = Math.min(h, w * 0.62)
     const pw = Math.min(w, ph * 1.9)
-    return {
-      x: Math.round(x + (w - pw) / 2),
-      y: Math.round(y + (h - ph) / 2),
-      w: Math.round(pw),
-      h: Math.round(ph),
-    }
+    return { x: Math.round(x + (w - pw) / 2), y: Math.round(y + (h - ph) / 2), w: Math.round(pw), h: Math.round(ph) }
   }
 
   function drawPoster(box, poster) {
@@ -252,7 +222,7 @@ export function createMapRenderer(level) {
     const ink = red ? C.paper : C.soot
 
     g.save()
-    g.globalAlpha = 0.86
+    g.globalAlpha = 0.86 
     g.fillStyle = C.soot
     g.fillRect(x - 2, y - 2, w + 4, h + 4)
     g.fillStyle = bg
@@ -285,21 +255,14 @@ export function createMapRenderer(level) {
     const lines = poster.lines
     const areaH = y + h - top
     const longest = Math.max(...lines.map((l) => l.length))
-    const size = Math.floor(
-      Math.min(
-        (areaH * 0.78) / lines.length,
-        (textW * 0.92) / (longest * 0.62),
-      ),
-    )
+    const size = Math.floor(Math.min((areaH * 0.78) / lines.length, (textW * 0.92) / (longest * 0.62)))
     g.fillStyle = ink
     g.font = `700 ${size}px ${fonts.title}`
     g.textAlign = 'center'
     g.textBaseline = 'middle'
     const lineH = size * 1.02
     const firstY = top + areaH / 2 - ((lines.length - 1) * lineH) / 2
-    lines.forEach((l, k) =>
-      g.fillText(l, textX + textW / 2, firstY + k * lineH + size * 0.04),
-    )
+    lines.forEach((l, k) => g.fillText(l, textX + textW / 2, firstY + k * lineH + size * 0.04))
 
     g.fillStyle = C.roofs[0]
     g.beginPath()
@@ -309,13 +272,7 @@ export function createMapRenderer(level) {
     g.fill()
     g.globalAlpha = 0.12
     g.fillStyle = C.soot
-    for (let k = 0; k < 5; k++)
-      g.fillRect(
-        x + rng.int(4, w - 6),
-        y + rng.int(0, h / 3),
-        2,
-        rng.int(h / 3, h),
-      )
+    for (let k = 0; k < 5; k++) g.fillRect(x + rng.int(4, w - 6), y + rng.int(0, h / 3), 2, rng.int(h / 3, h))
     g.restore()
   }
 
@@ -349,7 +306,7 @@ export function createMapRenderer(level) {
       }
       g.fillStyle = dark
       g.beginPath()
-      g.arc(cx, cy - r * 0.18, r * 0.3, 0, Math.PI * 2)
+      g.arc(cx, cy - r * 0.18, r * 0.3, 0, Math.PI * 2) 
       g.fill()
       g.beginPath()
       g.ellipse(cx, cy + r * 0.62, r * 0.55, r * 0.38, 0, Math.PI, 0)
@@ -390,8 +347,7 @@ export function createMapRenderer(level) {
 
   function speckle(x, y, colour, n) {
     g.fillStyle = colour
-    for (let k = 0; k < n; k++)
-      g.fillRect(x + rng.int(0, 15), y + rng.int(0, 15), 1, 1)
+    for (let k = 0; k < n; k++) g.fillRect(x + rng.int(0, 15), y + rng.int(0, 15), 1, 1)
   }
 
   function drawBrick(x, y) {
@@ -429,17 +385,7 @@ export function createMapRenderer(level) {
 
   return {
     drawBase(ctx, cam) {
-      ctx.drawImage(
-        layer,
-        cam.x,
-        cam.y,
-        cam.viewW,
-        cam.viewH,
-        0,
-        0,
-        cam.viewW,
-        cam.viewH,
-      )
+      ctx.drawImage(layer, cam.x, cam.y, cam.viewW, cam.viewH, 0, 0, cam.viewW, cam.viewH)
     },
 
     drawDynamic(ctx, cam, time) {
@@ -451,8 +397,7 @@ export function createMapRenderer(level) {
           const ty = (i - tx) / map.w
           const x = tx * TILE - cam.x
           const y = ty * TILE - cam.y
-          if (x < -TILE || y < -TILE || x > cam.viewW || y > cam.viewH)
-            continue
+          if (x < -TILE || y < -TILE || x > cam.viewW || y > cam.viewH) continue
           if (gate.closed) {
             ctx.fillStyle = C.c700
             ctx.fillRect(x, y, TILE, TILE)
@@ -478,18 +423,8 @@ export function createMapRenderer(level) {
       const ey = level.exitTiles.ty * TILE - cam.y
       const eh = level.exitTiles.h * TILE
       if (ex > -200 && ex < cam.viewW + 200) {
-        const glow = ctx.createRadialGradient(
-          ex + 16,
-          ey + eh / 2,
-          4,
-          ex + 16,
-          ey + eh / 2,
-          90,
-        )
-        glow.addColorStop(
-          0,
-          withAlpha(C.amber, 0.5 + Math.sin(time * 2) * 0.1),
-        )
+        const glow = ctx.createRadialGradient(ex + 16, ey + eh / 2, 4, ex + 16, ey + eh / 2, 90)
+        glow.addColorStop(0, withAlpha(C.amber, 0.5 + Math.sin(time * 2) * 0.1))
         glow.addColorStop(1, withAlpha(C.amber, 0))
         ctx.fillStyle = glow
         ctx.fillRect(ex - 90, ey - 90, 200, eh + 180)
@@ -502,8 +437,7 @@ export function createMapRenderer(level) {
       for (const l of level.lamps) {
         const x = l.tx * TILE + 8 - cam.x
         const y = l.ty * TILE + 8 - cam.y
-        if (x < -60 || y < -60 || x > cam.viewW + 60 || y > cam.viewH + 60)
-          continue
+        if (x < -60 || y < -60 || x > cam.viewW + 60 || y > cam.viewH + 60) continue
         const glow = ctx.createRadialGradient(x, y, 2, x, y, 52)
         glow.addColorStop(0, withAlpha(C.sodium, 0.28))
         glow.addColorStop(1, withAlpha(C.sodium, 0))

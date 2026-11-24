@@ -34,7 +34,7 @@ export function createTitleScene({ taskbar, onStart }) {
       time += dt
       for (const d of rain) {
         d.y += d.speed * dt
-        d.x -= d.speed * 0.18 * dt 
+        d.x -= d.speed * 0.18 * dt
         if (d.y > H) {
           d.y = -d.len
           d.x = Math.random() * (W + 120)
@@ -70,8 +70,14 @@ export function createTitleScene({ taskbar, onStart }) {
       ctx.fillStyle = beam
       ctx.beginPath()
       ctx.moveTo(ox, oy)
-      ctx.lineTo(ox + Math.cos(angle - spread) * reach, oy + Math.sin(angle - spread) * reach)
-      ctx.lineTo(ox + Math.cos(angle + spread) * reach, oy + Math.sin(angle + spread) * reach)
+      ctx.lineTo(
+        ox + Math.cos(angle - spread) * reach,
+        oy + Math.sin(angle - spread) * reach,
+      )
+      ctx.lineTo(
+        ox + Math.cos(angle + spread) * reach,
+        oy + Math.sin(angle + spread) * reach,
+      )
       ctx.closePath()
       ctx.fill()
       ctx.restore()

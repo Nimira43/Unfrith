@@ -35,6 +35,16 @@ export function createTaskbar() {
     on(action, fn) {
       handlers[action] = fn
     },
+    enable(action, on) {
+      const btn = el.querySelector(`button[data-action='${action}']`)
+      if (btn) {
+        btn.disabled = !on
+        btn.title = on ? '' : btn.title
+      }
+    },
+    showBell(on) {
+      $('tb-bell-wrap').style.display = on ? '' : 'none'
+    },
     status(text) {
       $('tb-status').textContent = text
     },

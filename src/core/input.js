@@ -1,5 +1,5 @@
 const down = new Set()
-const pressed = new Set()
+const pressed = new Set() 
 const mouse = { x: 0, y: 0, clicked: false, inside: false }
 
 let canvasEl = null
@@ -9,8 +9,7 @@ export function initInput(canvas) {
 
   window.addEventListener('keydown', (e) => {
     const k = normalise(e.key)
-    if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(k))
-      e.preventDefault()
+    if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(k)) e.preventDefault()
     if (!down.has(k)) pressed.add(k)
     down.add(k)
   })

@@ -4,9 +4,9 @@ import { palette } from '../core/palette.js'
 import { noise } from '../systems/noise.js'
 import { toTile } from '../world/tilemap.js'
 
-const WALK = 72
+const WALK = 72     
 const SNEAK = 38
-const STEP_EVERY = 0.34
+const STEP_EVERY = 0.34 
 const STEP_RADIUS = 3 * TILE
 
 export const MAX_STONES = 5
@@ -23,7 +23,7 @@ export function createPlayer(x, y) {
     hidden: false,
     stones: 2,
     stepTimer: 0,
-    still: 0,
+    still: 0, 
 
     update(dt, map) {
       let dx = 0
@@ -40,8 +40,8 @@ export function createPlayer(x, y) {
         const len = Math.hypot(dx, dy)
         const speed = p.sneaking ? SNEAK : WALK
         p.angle = Math.atan2(dy, dx)
-        moveAxis(map, (dx / len) * speed * dt, 0)
-        moveAxis(map, 0, (dy / len) * speed * dt)
+        moveAxis(map, dx / len * speed * dt, 0)
+        moveAxis(map, 0, dy / len * speed * dt)
         p.still = 0
 
         if (!p.sneaking) {
@@ -55,10 +55,7 @@ export function createPlayer(x, y) {
         p.still += dt
         p.stepTimer = 0
       }
-
-      p.hidden =
-        map.isHiding(toTile(p.x), toTile(p.y)) &&
-        (p.sneaking || p.still > 0.25)
+      p.hidden = map.isHiding(toTile(p.x), toTile(p.y)) && (p.sneaking || p.still > 0.25)
     },
 
     draw(ctx, cam, time) {

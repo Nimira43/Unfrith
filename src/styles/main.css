@@ -27,7 +27,7 @@ body {
   top: 0;
   width: var(--frame-w);
   height: var(--frame-h);
-  transform-origin: 0 0;
+  transform-origin: 0 0; 
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 0 1px var(--concrete-900);
@@ -273,4 +273,278 @@ body {
   font-family: var(--font-title);
   color: var(--regime-red);
   letter-spacing: 0.12em;
+}
+
+/* ---------- The evidence board ---------- */
+.board {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  background: rgba(14, 15, 13, 0.96);
+}
+
+.board[hidden] {
+  display: none;
+}
+
+.board__panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 780px 1fr;
+}
+
+.board__cork {
+  position: relative;
+  margin: 16px 0 16px 16px;
+  background:
+    radial-gradient(
+        circle at 20% 30%,
+        rgba(0, 0, 0, 0.12) 0 2px,
+        transparent 3px
+      )
+      0 0 / 14px 14px,
+    radial-gradient(
+        circle at 70% 60%,
+        rgba(255, 255, 255, 0.05) 0 1px,
+        transparent 2px
+      )
+      0 0 / 9px 9px,
+    #8a6a44;
+  border: 10px solid var(--base-wood);
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.45),
+    0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.board__note {
+  position: absolute;
+  left: 22px;
+  top: 14px;
+  width: 712px;
+  padding: 8px 14px;
+  background: var(--paper);
+  color: var(--soot);
+  font-size: 17px;
+  line-height: 1.3;
+  transform: rotate(-0.6deg);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.board__sig {
+  font-style: italic;
+  float: right;
+}
+
+.board__strings {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.board__strings line {
+  stroke: var(--regime-red);
+  stroke-width: 2.5;
+}
+
+.board__empty {
+  position: absolute;
+  top: 260px;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--soot);
+}
+
+.card {
+  position: absolute;
+  width: 168px;
+  height: 104px;
+  padding: 18px 12px 10px;
+  background: var(--paper);
+  color: var(--soot);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  z-index: 1;
+  transition: box-shadow 0.15s;
+}
+
+.card:hover,
+.card:focus-visible {
+  box-shadow:
+    0 0 0 3px var(--resistance-amber),
+    0 6px 14px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.card.is-selected {
+  box-shadow:
+    0 0 0 3px var(--regime-red),
+    0 6px 14px rgba(0, 0, 0, 0.5);
+}
+
+.card.is-linkable {
+  box-shadow:
+    0 0 0 3px var(--resistance-amber),
+    0 6px 14px rgba(0, 0, 0, 0.5);
+}
+
+.card.is-sent {
+  opacity: 0.75;
+}
+
+.card__pin {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--regime-red);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card__no {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--concrete-700);
+}
+
+.card__name {
+  display: block;
+  margin-top: 4px;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.card__stamp {
+  position: absolute;
+  right: 6px;
+  bottom: 8px;
+  padding: 1px 6px;
+  font-family: var(--font-title);
+  font-size: 13px;
+  color: var(--regime-red);
+  border: 2px solid var(--regime-red);
+  transform: rotate(-8deg);
+}
+
+.board__side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 24px 16px 20px;
+  color: var(--paper);
+  min-height: 0;
+}
+
+.board__detail {
+  min-height: 210px;
+}
+
+.board__hint {
+  font-style: italic;
+  color: var(--paper-dim);
+  font-size: 19px;
+}
+
+.board__docname {
+  font-family: var(--font-title);
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.board__doctext {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--paper);
+}
+
+.board__linked {
+  margin-top: 6px;
+  font-size: 16px;
+  color: var(--regime-red);
+}
+
+.board__actions {
+  margin-top: 10px;
+}
+
+.board__sendlabel {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--paper-dim);
+}
+
+.board__envelopes {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.envelope {
+  flex: 1;
+  padding: 10px 6px;
+  font-family: var(--font-title);
+  font-size: 15px;
+  color: var(--soot);
+  background: #c8b48e;
+  border: 1px solid var(--base-wood);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  cursor: pointer;
+}
+
+.envelope:hover {
+  background: var(--paper);
+}
+
+.envelope.is-pending {
+  background: var(--regime-red);
+  color: var(--paper);
+}
+
+.board__cancel {
+  margin-top: 6px;
+  align-self: flex-start;
+}
+
+.board__message {
+  min-height: 44px;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--resistance-amber);
+}
+
+.board__fracture {
+  margin-top: auto;
+  text-align: center;
+}
+
+.board__fracture .fracture {
+  width: 280px;
+  height: auto;
+}
+
+.board__fracture p {
+  font-size: 15px;
+  color: var(--paper-dim);
+}
+
+.board__close {
+  align-self: flex-end;
+}
+
+.modal__body .fracture {
+  display: block;
+  width: 380px;
+  margin: 0 auto 8px;
 }

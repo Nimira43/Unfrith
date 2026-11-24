@@ -60,15 +60,13 @@ export function createGuard(def, kind = CAP_OFFICER) {
       g.sees = !hiddenFromMe && canSee(map, g, player.x, player.y)
 
       if (g.sees) {
-        const rate =
-          g.state === 'search' ? 2.2 : 0.35 + 1.4 * (1 - dist / VIEW_RANGE)
+         const rate = g.state === 'search' ? 2.2 : 0.35 + 1.4 * (1 - dist / VIEW_RANGE)
         g.suspicion = Math.min(1, g.suspicion + rate * dt)
         g.lastSeen = { x: player.x, y: player.y }
         g.unseen = 0
       } else {
         g.unseen += dt
-        if (g.state !== 'alert')
-          g.suspicion = Math.max(0, g.suspicion - 0.2 * dt)
+        if (g.state !== 'alert') g.suspicion = Math.max(0, g.suspicion - 0.2 * dt)
       }
 
       if (g.state !== 'alert') {
@@ -158,8 +156,7 @@ export function createGuard(def, kind = CAP_OFFICER) {
             if (dest) g.path = pathTo(map, dest.x, dest.y)
           }
           follow(dt, map, kind.speeds.alert)
-          if (g.sees)
-            turnTowards(Math.atan2(player.y - g.y, player.x - g.x), dt)
+          if (g.sees) turnTowards(Math.atan2(player.y - g.y, player.x - g.x), dt)
           if (!g.sees && g.unseen > 1 && !g.path.length) {
             g.state = 'search'
             g.searchTimer = SEARCH_TIME
@@ -231,22 +228,14 @@ export function createGuard(def, kind = CAP_OFFICER) {
     drawCone(ctx, cam, map) {
       const pts = conePoints(map, g)
       const colour =
-        g.state === 'alert'
-          ? palette.get('regime-red')
-          : g.state === 'suspicious' || g.state === 'search'
-            ? palette.get('resistance-amber')
+        g.state === 'alert' ? palette.get('regime-red')
+          : g.state === 'suspicious' || g.state === 'search' ? palette.get('resistance-amber')
             : palette.get('paper')
-      const alpha =
-        g.state === 'alert'
-          ? 0.2
-          : g.state === 'patrol' || g.state === 'return'
-            ? 0.07
-            : 0.14
+      const alpha = g.state === 'alert' ? 0.2 : g.state === 'patrol' || g.state === 'return' ? 0.07 : 0.14
       ctx.fillStyle = withAlpha(colour, alpha)
       ctx.beginPath()
       ctx.moveTo(pts[0][0] - cam.x, pts[0][1] - cam.y)
-      for (let k = 1; k < pts.length; k++)
-        ctx.lineTo(pts[k][0] - cam.x, pts[k][1] - cam.y)
+      for (let k = 1; k < pts.length; k++) ctx.lineTo(pts[k][0] - cam.x, pts[k][1] - cam.y)
       ctx.closePath()
       ctx.fill()
     },
@@ -269,17 +258,10 @@ export function createGuard(def, kind = CAP_OFFICER) {
       ctx.fillRect(2.5, -2.5, 2.5, 5)
       ctx.restore()
 
-      if (
-        g.state === 'suspicious' ||
-        g.state === 'search' ||
-        g.state === 'alert'
-      ) {
-        ctx.font = "700 12px 'Special Elite', monospace"
+      if (g.state === 'suspicious' || g.state === 'search' || g.state === 'alert') {
+        ctx.font = '700 12px "Special Elite", monospace'
         ctx.textAlign = 'center'
-        ctx.fillStyle =
-          g.state === 'alert'
-            ? palette.get('regime-red')
-            : palette.get('resistance-amber')
+        ctx.fillStyle = g.state === 'alert' ? palette.get('regime-red') : palette.get('resistance-amber')
         const bob = Math.sin(time * 6) * 1.5
         ctx.fillText(g.state === 'alert' ? '!' : '?', x, y - 11 + bob)
       }
@@ -287,13 +269,7 @@ export function createGuard(def, kind = CAP_OFFICER) {
         ctx.strokeStyle = palette.get('resistance-amber')
         ctx.lineWidth = 2
         ctx.beginPath()
-        ctx.arc(
-          x,
-          y,
-          10,
-          -Math.PI / 2,
-          -Math.PI / 2 + g.suspicion * Math.PI * 2,
-        )
+        ctx.arc(x, y, 10, -Math.PI / 2, -Math.PI / 2 + g.suspicion * Math.PI * 2)
         ctx.stroke()
       }
     },
@@ -309,7 +285,7 @@ export function createGuard(def, kind = CAP_OFFICER) {
     if (!g.path.length) return
     const next = g.path[0]
     if (map.isSolid(next.tx, next.ty)) {
-      g.path = [] // a gate closed in the way
+      g.path = [] 
       return
     }
     const nx = tileCentre(next.tx)
@@ -337,10 +313,8 @@ export function createGuard(def, kind = CAP_OFFICER) {
 
   function randomNearby(map, around, radius) {
     for (let k = 0; k < 8; k++) {
-      const tx =
-        toTile(around.x) + Math.round((Math.random() * 2 - 1) * radius)
-      const ty =
-        toTile(around.y) + Math.round((Math.random() * 2 - 1) * radius)
+      const tx = toTile(around.x) + Math.round((Math.random() * 2 - 1) * radius)
+      const ty = toTile(around.y) + Math.round((Math.random() * 2 - 1) * radius)
       if (map.isSolid(tx, ty)) continue
       const p = findPath(map, toTile(g.x), toTile(g.y), tx, ty, 1500)
       if (p && p.length) return p

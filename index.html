@@ -16,6 +16,7 @@
             height="640"
             aria-label="Unfriþ"
           ></canvas>
+          <div id="board" class="board" hidden></div>
           <div id="modal" class="modal" hidden>
             <div
               class="modal__panel"
@@ -61,9 +62,9 @@
 
           <div class="taskbar__right">
             <div class="taskbar__game">
-              <span class="taskbar__stat"
+              <span id="tb-bell-wrap" class="taskbar__stat"
                 ><span class="taskbar__label">Bell</span>
-                <span id="tb-bell" class="taskbar__data">0:28</span></span
+                <span id="tb-bell" class="taskbar__data">0:22</span></span
               >
               <button class="btn" type="button" data-action="evidence">
                 Evidence
@@ -85,7 +86,7 @@
               </button>
             </div>
             <div class="taskbar__titleonly">
-              <span class="taskbar__data">v0.2.1</span>
+              <span class="taskbar__data">v0.3.0</span>
             </div>
           </div>
         </footer>
