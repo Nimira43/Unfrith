@@ -71,7 +71,7 @@ Bleak, but never pure black and white. Every colour is a CSS variable in `src/st
 | Mouse click | Throw a stone where you aim |
 | Esc / P | Pause |
 
-Keep still (or sneak) in a doorway or alcove to hide. Footsteps carry; stones carry further.
+Keep still (or sneak) in a doorway, alcove or thicket to hide. Footsteps carry; stones carry further.
 
 ## Getting started
 
@@ -90,8 +90,8 @@ unfrith/
   src/
     main.js           # boot: fonts, display, loop, first scene
     core/             # display scaling, palette, loop, scene manager
-    world/            # tiles, tile map, A* pathfinding, city and tunnel generators, renderers, lighting
-    entities/         # player, guards, stones, resistance members
+    world/            # tiles, tile map, A* pathfinding, city / tunnel / countryside generators, renderers, lighting
+    entities/         # player, guards, patrol vans, stones, resistance members
     ai/               # vision cones
     systems/          # noise events, game state, the Fracture
     data/             # evidence catalogue, the resistance
@@ -105,11 +105,12 @@ unfrith/
 
 ## Status
 
-**v0.3.0: Level 1 and Safe Passage I.**
+**v0.4.0: Level 1, Safe Passage I and Level 2.**
 
 - **Level 1, The City Maze:** a procedurally generated city (L-shaped buildings, hiding doorways, rooftop propaganda posters) whose walls shift whenever the curfew bell rings. Every generated city is checked to be escapable in every phase.
 - **Safe Passage I, Under the City:** dark tunnels with a torch-carrying patrol and alcoves to hide in, leading to the resistance base, where the people who will help you are waiting. Some of them, at least.
 - **The evidence board:** read what you carried out, string together documents that tell the same story, and decide which power sees each one.
-- **Core:** input, camera, fixed-step loop, scenes, synthesised audio, guard AI with vision cones, hearing and stone distraction, a lighting layer, taskbar and modals.
+- **Level 2, The Country Roads:** a stormy night in open country. Fields and hedgerows, forests that hide you but slow you, a river with bridges (and a quieter crossing), CAP patrol vans with headlights, a checkpoint, a hunting lodge. Lightning shows everything to everyone, and you must reach the farm before dawn.
+- **Core:** input, camera, fixed-step loop, scenes, synthesised audio (including rain and thunder), guard AI with vision cones, hearing, stone distraction and cover, a lighting layer, taskbar and modals.
 
-Next: Level 2, the Country Roads.
+Next: Safe Passage II, back to the base.

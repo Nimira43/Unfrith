@@ -92,7 +92,7 @@ export function createBoard() {
         const sent = gameState.leaked[id];
         return `
         <div class="card ${selected === id ? "is-selected" : ""} ${sent ? "is-sent" : ""} ${linking && id !== selected ? "is-linkable" : ""}"
-             data-card="${id}" style="left:${x}px top:${y}px transform: rotate(${tilt}deg)" role="button" tabindex="0">
+             data-card="${id}" style="left:${x}px; top:${y}px; transform: rotate(${tilt}deg)" role="button" tabindex="0">
           <i class="card__pin"></i>
           <span class="card__no">No. ${e.number}</span>
           <span class="card__name">${e.name}</span>

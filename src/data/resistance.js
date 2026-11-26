@@ -158,6 +158,6 @@ export const MEMBERS = {
       line: "The supply run? Tuesday. Same as always. Why — was there a sweep on Tuesday?",
     },
   },
-}
+};
 
-export const MEMBER_IDS = Object.keys(MEMBERS)
+export const MEMBER_IDS = Object.keys(MEMBERS);

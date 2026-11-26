@@ -8,7 +8,7 @@ export const EVIDENCE = {
     leakTo: "CAP",
     bond: "CAP-HIA",
     text:
-      "A CAP sector duty roster. Beside each officer’s name, in neat HIA pencil: " +
+      "A CAP sector duty roster. Beside each officer's name, in neat HIA pencil: " +
       "a grade for “reliability”. Several are marked simply: REMOVE.",
   },
   ledger: {
@@ -35,9 +35,46 @@ export const EVIDENCE = {
       "Half a telegram from an HIA courier. Most of it is gone. What remains reads: " +
       "“PHASE ONE ON SCHEDULE STOP FATHER UNAWARE STOP”",
   },
-}
+  checkpoint: {
+    id: "checkpoint",
+    number: 4,
+    name: "The Checkpoint Log",
+    level: 2,
+    weight: "minor",
+    leakTo: "CAP",
+    bond: "CAP-HIA",
+    text:
+      "The night log from Checkpoint 14. Pinned inside the cover, a standing order with the HIA eye: " +
+      "vehicles bearing that mark are not to be stopped, searched or recorded. Three passed tonight.",
+  },
+  ashby: {
+    id: "ashby",
+    number: 5,
+    name: "The Ashby Road Log",
+    level: 2,
+    weight: "minor",
+    leakTo: "CAP",
+    bond: "Committee-CAP",
+    text:
+      "The radio log from a burnt-out CAP van. Last entry: \u201cOrdered to hold Ashby Road. No backup coming. " +
+      "Committee says the resistance will be blamed.\u201d Then nothing but static.",
+  },
+  photographs: {
+    id: "photographs",
+    number: 6,
+    name: "The Gamekeeper\u2019s Photographs",
+    level: 2,
+    weight: "major",
+    leakTo: "Committee",
+    bond: "Committee-HIA",
+    text:
+      "A gamekeeper\u2019s envelope of night photographs. At the hunting lodge, under a lamp: HIA Director " +
+      "James Collins shaking hands with Committee member Ian Pattinson. Neither is supposed to know the other.",
+  },
+};
 
-export const LEVEL1_EVIDENCE = ["roster", "ledger", "telegram"]
+export const LEVEL1_EVIDENCE = ["roster", "ledger", "telegram"];
+export const LEVEL2_EVIDENCE = ["checkpoint", "ashby", "photographs"];
 
 export const CORROBORATION = [
   ["telegram", "dossier"],
@@ -45,6 +82,6 @@ export const CORROBORATION = [
   ["roster", "commanders"],
   ["contingency", "salon"],
   ["ashby", "ledger"],
-]
+];
 
-export const WEIGHT_DAMAGE = { minor: 10, major: 20, critical: 40 }
+export const WEIGHT_DAMAGE = { minor: 10, major: 20, critical: 40 };

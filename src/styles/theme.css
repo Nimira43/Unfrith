@@ -1,23 +1,22 @@
 :root {
-  --font-main: 'Cormorant Garamond', Georgia, serif;   
-  --font-title: 'Stardos Stencil', 'Cormorant Garamond', serif; 
-  --font-mono: 'Special Elite', 'Courier New', monospace; 
+  --font-main: "Cormorant Garamond", Georgia, serif;
+  --font-title: "Stardos Stencil", "Cormorant Garamond", serif;
+  --font-mono: "Special Elite", "Courier New", monospace;
 
   --soot: #1c1d1b;
   --concrete-900: #2a2b28;
   --concrete-700: #4a4b46;
   --concrete-500: #74756e;
   --concrete-300: #a8a69c;
-  --paper: #d8d2c4;         
-  --paper-dim: #a39d90;     
+  --paper: #d8d2c4;
+  --paper-dim: #a39d90;
 
-  --regime-red: #9e2b25;    
+  --regime-red: #9e2b25;
   --regime-red-dark: #5e1a17;
-  --resistance-amber: #d9a441; 
-  --sodium: #c9822e;        
+  --resistance-amber: #d9a441;
+  --sodium: #c9822e;
 
-  
-  --city-slate: #2e3236;    
+  --city-slate: #2e3236;
   --city-brick: #5b3a32;
   --city-puddle: #3b4a52;
   --city-roof: #3f403b;
@@ -33,6 +32,12 @@
   --forest-moss: #4f6b45;
   --country-tarmac: #33352f;
   --lightning: #e8ecf2;
+  --country-field: #1e2a21;
+  --country-field-2: #223026;
+  --country-hedge: #16241a;
+  --country-water: #1b2a33;
+  --country-mud: #3a3328;
+  --country-roof: #3d3a35;
 
   --hq-mint: #a8cbb7;
   --hq-mint-dark: #7fa894;

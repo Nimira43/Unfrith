@@ -15,6 +15,7 @@ body {
   overflow: hidden;
 }
 
+/* The stage fills the window; the fixed 1280 × 720 frame is scaled to fit inside it. */
 #stage {
   position: fixed;
   inset: 0;
@@ -27,7 +28,7 @@ body {
   top: 0;
   width: var(--frame-w);
   height: var(--frame-h);
-  transform-origin: 0 0; 
+  transform-origin: 0 0; /* scale and position are set in src/core/display.js */
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 0 1px var(--concrete-900);
