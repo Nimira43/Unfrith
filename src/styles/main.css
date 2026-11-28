@@ -549,3 +549,10 @@ body {
   width: 380px;
   margin: 0 auto 8px;
 }
+
+.modal__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}

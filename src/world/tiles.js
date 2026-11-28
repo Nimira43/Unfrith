@@ -14,7 +14,7 @@ export const T = {
   FORD: 12,
   HEDGE: 13,
   BRIDGE: 14,
-};
+}
 
 export const SOLID = new Set([
   T.BUILDING,
@@ -24,5 +24,5 @@ export const SOLID = new Set([
   T.TREE,
   T.WATER,
   T.HEDGE,
-]);
-export const HIDING = new Set([T.DOORWAY]);
+])
+export const HIDING = new Set([T.DOORWAY])
